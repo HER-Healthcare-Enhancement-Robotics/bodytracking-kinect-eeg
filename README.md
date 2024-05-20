@@ -1,6 +1,6 @@
 # BodyTracking-Kinect-EEG
 
-![pic goes HARD](public/img/screenshot.png)
+![pic goes HARD](public/img/GOAT.png)
 
 ## Códigos para la conexión del EEG con visión computacional.
 Este repo tiene una serie de códigos, los cuales van a ser usados para conectar el body tracking con el eeg, esto para poder tener una correlación con los datos registrados en el eeg con la visualización del movimiento físico del sujeto.
