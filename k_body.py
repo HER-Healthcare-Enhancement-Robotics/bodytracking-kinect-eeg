@@ -1,5 +1,4 @@
 # Para el esqueleto de body tracking, a veces falla
-# Refactor: usar pykinect2
 
 import pykinect_azure as pykinect
 import cv2

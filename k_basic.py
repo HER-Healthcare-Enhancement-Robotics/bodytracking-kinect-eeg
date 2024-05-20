@@ -1,4 +1,5 @@
 # Kinect SDK connection, no body tracking, only displays the camera
+# Uses pyk4a
 from pyk4a import PyK4A, Config, ColorResolution, DepthMode, ImageFormat
 import cv2
 import numpy as np
