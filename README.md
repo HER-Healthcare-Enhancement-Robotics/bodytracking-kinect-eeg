@@ -3,7 +3,9 @@
 ![pic goes HARD](public/img/GOAT.png)
 
 ## Para correr
-- Instalar los modulos necesarios
+- [Azure Kinect Viewer SDK](https://learn.microsoft.com/en-us/azure/kinect-dk/azure-kinect-viewer)
+- [Azure Kinect Body Tracking Viewer SDK](https://learn.microsoft.com/en-us/azure/kinect-dk/body-sdk-download)
+- Instalar los modulos de python necesarios
 - `py {nombre_del_script.py}`
 
 ## Códigos para la conexión del EEG con visión computacional.

@@ -1,9 +1,11 @@
+from pynput import mouse
 import cv2
 import json
 import pykinect_azure as pykinect
 from datetime import datetime
 
 filename = None  # Filename for saving data
+recording = False
 
 def save_skeleton_data(body_frame, filename):
     try:
@@ -43,15 +45,16 @@ def save_skeleton_data(body_frame, filename):
     with open(filename, 'w') as file:
         json.dump(skeleton_data, file, indent=4)
 
-def click_event(event, x, y, flags, param):
+def on_click(x, y, button, pressed):
+    print(f"X: {x}, Y: {y}")
     global recording, filename
-    if event == cv2.EVENT_LBUTTONDOWN:
-        if 0 <= x <= 200 and 0 <= y <= 200:
-            recording = not recording
-            if recording:
-                filename = f"skeleton_data_{datetime.now().strftime('%Y-%m-%dT%H-%M-%S')}.json"
-            else:
-                filename = None  # Reset the filename after stopping
+    # Define the area where click will toggle recording
+    if pressed and 50 <= x <= 100 and 100 <= y <= 150:
+        recording = not recording
+        if recording:
+            filename = f"./skeleton_data_{datetime.now().strftime('%Y-%m-%dT%H-%M-%S')}.json"
+        else:
+            filename = None  # Reset the filename after stopping
 
 if __name__ == "__main__":
     pykinect.initialize_libraries(track_body=True)
@@ -62,8 +65,10 @@ if __name__ == "__main__":
     bodyTracker = pykinect.start_body_tracker()
 
     cv2.namedWindow('Depth image with skeleton', cv2.WINDOW_NORMAL)
-    cv2.setMouseCallback('Depth image with skeleton', click_event)
-    recording = False
+
+    # Set up global mouse listener
+    listener = mouse.Listener(on_click=on_click)
+    listener.start()
 
     while True:
         capture = device.update()
@@ -85,3 +90,4 @@ if __name__ == "__main__":
 
     cv2.destroyAllWindows()
     device.stop()
+    listener.stop()
